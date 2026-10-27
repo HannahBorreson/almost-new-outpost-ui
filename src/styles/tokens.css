@@ -1,0 +1,69 @@
+/* Design tokens: every colour, size and effect the app uses. Tune here. */
+:root {
+  /* Brand greens */
+  --color-forest: #3b5734;
+  --color-forest-2: #425f3b;
+  --color-sage: #89ae8b;
+  --color-moss: #6f8f5e;
+
+  /* Glass panels */
+  --color-glass: rgba(20, 26, 22, 0.62);
+  --color-glass-strong: rgba(22, 28, 24, 0.9);
+  --color-glass-border: rgba(137, 174, 139, 0.35);
+  --glass-blur: 14px;
+
+  /* Status colours (+ tinted backgrounds and readable text on glass) */
+  --color-ok: #6fbf73;
+  --color-ok-bg: rgba(111, 191, 115, 0.14);
+  --color-ok-text: #a9e0aa;
+  --color-danger: #e0645a;
+  --color-danger-bg: rgba(224, 100, 90, 0.14);
+  --color-danger-text: #f4a49c;
+  --color-warning: #e6a23c;
+  --color-warning-bg: rgba(230, 162, 60, 0.14);
+  --color-warning-text: #f5c77e;
+
+  /* Text */
+  --color-text: #f1f4ef;
+  --color-text-muted: #b7c2b4;
+  --color-focus: #f5c77e;
+
+  /* Shape */
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-8: 64px;
+
+  /* Shadows */
+  --shadow-panel: 0 8px 24px rgba(0, 0, 0, 0.28);
+  --shadow-modal: 0 24px 60px rgba(0, 0, 0, 0.5);
+
+  /* Type */
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  /* ---- Backgrounds -------------------------------------------------------
+     Pure-CSS fallback: warm sunlight top-right, deep greens at the bottom. */
+  --bg-gradient-fallback:
+    radial-gradient(ellipse 55% 45% at 82% 8%, rgba(255, 236, 186, 0.75), rgba(255, 236, 186, 0) 70%),
+    radial-gradient(ellipse 40% 60% at 8% 70%, rgba(59, 87, 52, 0.85), rgba(59, 87, 52, 0) 70%),
+    radial-gradient(ellipse 50% 40% at 70% 95%, rgba(66, 95, 59, 0.9), rgba(66, 95, 59, 0) 70%),
+    linear-gradient(180deg, #c9c7a6 0%, #8f9f7c 30%, #4f6447 58%, #26331f 82%, #182015 100%);
+
+  /* Picture of an overgrown city (drop a photo into src/assets/backgrounds to replace it) */
+  --bg-image-city: url('../assets/backgrounds/overgrown-city.svg') center / cover no-repeat, var(--bg-gradient-fallback);
+
+  /* THE switch: which background the app uses. Swap to var(--bg-gradient-fallback) for gradients only. */
+  --app-background: var(--bg-image-city);
+  --login-background: var(--app-background);
+  --background-blur: 7px;
+  --background-overlay: linear-gradient(180deg, rgba(10, 14, 11, 0.35), rgba(10, 14, 11, 0.55));
+}

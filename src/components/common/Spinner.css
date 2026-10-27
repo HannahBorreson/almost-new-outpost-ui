@@ -1,0 +1,29 @@
+.spinner {
+  display: inline-block;
+  border-radius: 50%;
+  border: 2px solid rgba(241, 244, 239, 0.25);
+  border-top-color: var(--color-sage);
+  animation: spin 0.8s linear infinite;
+  flex-shrink: 0;
+}
+.spinner--sm { width: 16px; height: 16px; }
+.spinner--md { width: 28px; height: 28px; border-width: 3px; }
+.spinner--lg { width: 44px; height: 44px; border-width: 4px; }
+
+.spinner-inline { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--color-text-muted); }
+
+.spinner-page {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--space-3);
+  color: var(--color-text-muted);
+}
+.spinner-page .spinner { width: 44px; height: 44px; border-width: 4px; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner { animation-duration: 2.4s; }
+}

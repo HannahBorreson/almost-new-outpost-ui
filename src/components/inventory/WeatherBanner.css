@@ -1,0 +1,46 @@
+.weather-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid;
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  text-align: center;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.weather-banner p { margin: 0; }
+.weather-banner svg { flex-shrink: 0; }
+
+.weather-banner--danger {
+  background: linear-gradient(90deg, rgba(120, 72, 14, 0.55), rgba(92, 56, 12, 0.62), rgba(120, 72, 14, 0.55));
+  border-color: var(--color-warning);
+  color: var(--color-warning-text);
+  box-shadow: 0 0 18px rgba(230, 162, 60, 0.25), inset 0 0 12px rgba(230, 162, 60, 0.12);
+}
+
+.weather-banner--clear {
+  background: rgba(46, 78, 44, 0.58);
+  border-color: rgba(111, 191, 115, 0.6);
+  color: var(--color-ok-text);
+}
+
+.weather-banner--muted {
+  background: var(--color-glass);
+  border-color: var(--color-glass-border);
+  color: var(--color-text-muted);
+}
+
+.weather-banner__clock {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.weather-banner__stale { color: var(--color-text-muted); font-weight: 400; }
+
+@media (max-width: 560px) {
+  .weather-banner { font-size: 0.9rem; align-items: flex-start; text-align: left; justify-content: flex-start; }
+  .weather-banner svg { margin-top: 2px; }
+}

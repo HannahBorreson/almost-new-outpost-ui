@@ -1,0 +1,6 @@
+[
+  { "categoryId": 1, "categoryName": "Basic" },
+  { "categoryId": 2, "categoryName": "Exploration" },
+  { "categoryId": 3, "categoryName": "Medical" },
+  { "categoryId": 4, "categoryName": "Security" }
+]

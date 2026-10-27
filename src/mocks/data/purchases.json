@@ -1,0 +1,14 @@
+{
+  "_note": "Seed purchases. 'hoursAgo' is turned into a real purchaseDate when the page loads, so the seeded history always looks recent.",
+  "purchases": [
+    { "purchaseId": 1, "userId": 1, "productId": 1, "hoursAgo": 2, "finalPrice": 12 },
+    { "purchaseId": 2, "userId": 1, "productId": 5, "hoursAgo": 26, "finalPrice": 30 },
+    { "purchaseId": 3, "userId": 2, "productId": 7, "hoursAgo": 5, "finalPrice": 36 },
+    { "purchaseId": 4, "userId": 2, "productId": 9, "hoursAgo": 50, "finalPrice": 55 },
+    { "purchaseId": 5, "userId": 3, "productId": 13, "hoursAgo": 3, "finalPrice": 12 },
+    { "purchaseId": 6, "userId": 3, "productId": 11, "hoursAgo": 30, "finalPrice": 40 },
+    { "purchaseId": 7, "userId": 4, "productId": 18, "hoursAgo": 8, "finalPrice": 48 },
+    { "purchaseId": 8, "userId": 5, "productId": 10, "hoursAgo": 20, "finalPrice": 80 },
+    { "purchaseId": 9, "userId": 5, "productId": 4, "hoursAgo": 70, "finalPrice": 10 }
+  ]
+}

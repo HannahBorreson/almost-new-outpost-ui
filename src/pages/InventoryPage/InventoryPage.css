@@ -1,0 +1,35 @@
+/* Desktop: search | products | recent purchases */
+.inventory {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr) 260px;
+  grid-template-areas: 'side grid recent';
+  gap: var(--space-5);
+  align-items: start;
+}
+.inventory__side { grid-area: side; }
+.inventory__grid { grid-area: grid; min-width: 0; }
+.inventory__recent { grid-area: recent; }
+
+/* Medium: recent purchases tucks under the search panel */
+@media (max-width: 1199px) {
+  .inventory {
+    grid-template-columns: 250px minmax(0, 1fr);
+    grid-template-areas:
+      'side grid'
+      'recent grid';
+    grid-template-rows: auto 1fr;
+  }
+}
+
+/* Tablet and phone: search on top, products, then recent purchases */
+@media (max-width: 899px) {
+  .inventory {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      'side'
+      'grid'
+      'recent';
+    grid-template-rows: none;
+    gap: var(--space-4);
+  }
+}

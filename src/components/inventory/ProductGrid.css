@@ -1,0 +1,18 @@
+/* 4 columns on wide screens, 3 at medium, 2 on tablets, 1 on phones */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-4);
+  transition: opacity 0.2s;
+}
+.product-grid--refreshing { opacity: 0.6; }
+
+@media (max-width: 1359px) {
+  .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 899px) {
+  .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }
+}
+@media (max-width: 559px) {
+  .product-grid { grid-template-columns: 1fr; }
+}
