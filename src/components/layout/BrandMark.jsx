@@ -3,10 +3,11 @@ import { useId } from 'react'
 // The two-tone coin pouch logo (same drawing as src/assets/icons/purse-icon.svg).
 // Gradient and clip ids get a unique suffix so several logos can share a page.
 // The viewBox is cropped so the pouch fills its box at small sizes.
+const SAGE = '#86ab88'
+const FOREST = '#3f5b38'
+
 export default function BrandMark({ size = 48, className = '', title }) {
   const id = useId().replace(/[^a-zA-Z0-9_-]/g, '')
-  const sage = `sage-${id}`
-  const forest = `forest-${id}`
   const left = `left-${id}`
   const right = `right-${id}`
   const body = `body-${id}`
@@ -37,14 +38,6 @@ export default function BrandMark({ size = 48, className = '', title }) {
       aria-hidden={title ? undefined : true}
     >
       <defs>
-        <linearGradient id={sage} x1="0" y1="0" x2="1" y2="1">
-          <stop stopColor="#89ae8b" />
-          <stop offset="1" stopColor="#83a784" />
-        </linearGradient>
-        <linearGradient id={forest} x1="0" y1="0" x2="1" y2="1">
-          <stop stopColor="#3b5734" />
-          <stop offset="1" stopColor="#425f3b" />
-        </linearGradient>
         <clipPath id={left}>
           <rect x="0" y="0" width="512" height="1024" />
         </clipPath>
@@ -74,10 +67,11 @@ export default function BrandMark({ size = 48, className = '', title }) {
         <circle id={knob1} cx="472" cy="315" r="30" />
         <circle id={knob2} cx="552" cy="315" r="30" />
       </defs>
-      <g clipPath={`url(#${left})`} fill={`url(#${sage})`} stroke={`url(#${sage})`}>
+      {/* Solid colours: the near-identical two-stop gradients used before showed as diagonal banding. */}
+      <g clipPath={`url(#${left})`} fill={SAGE} stroke={SAGE}>
         {parts}
       </g>
-      <g clipPath={`url(#${right})`} fill={`url(#${forest})`} stroke={`url(#${forest})`}>
+      <g clipPath={`url(#${right})`} fill={FOREST} stroke={FOREST}>
         {parts}
       </g>
     </svg>
