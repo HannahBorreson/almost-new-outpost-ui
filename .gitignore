@@ -11,6 +11,7 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+coverage
 
 # Local env overrides (never commit secrets)
 *.local

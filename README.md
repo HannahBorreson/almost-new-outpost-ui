@@ -3,7 +3,12 @@ Software Design 3 web application to learn inventory management.
 
 The React front end for **Almost New 24/7 Outpost**, a hopeful little merchant shop in a city that nature has taken back. Every screen answers one question: **can this signed-in user perform this action?**
 
-There is no backend yet. Every API call goes through a real API layer (`src/api/`) that is currently answered by **mock JSON data in the browser**. When the ASP.NET Core API is ready, you switch to it by changing one environment variable. No page or component changes.
+The UI talks to the ASP.NET Core API in the sibling repo **`almost-new-outpost-api`**. Every API call goes through one API layer (`src/api/`), which can be answered two ways:
+
+- **Real API:** HTTP requests to the running API, which needs MySQL. See [Switching to the real API](#switching-to-the-real-api).
+- **Mock mode:** the same calls answered by **mock JSON data in the browser**, so you can work on the UI without the API. See [Mock mode](#mock-mode). The automated tests always use mock mode.
+
+One environment variable, `VITE_USE_MOCKS`, switches between them. No page or component changes.
 
 ---
 
@@ -34,6 +39,60 @@ Open http://localhost:5173 and log in with one of the demo accounts below.
 | `npm run build` | Production build into `dist/` |
 | `npm run preview` | Serve the production build locally |
 | `npm run lint` | Run ESLint |
+| `npm test` | Run the tests and re-run them as you save files |
+| `npm run test:run` | Run the tests once |
+| `npm run coverage` | Run the tests once and write a coverage report |
+
+## Tests and coverage
+
+The tests use [Vitest](https://vitest.dev) with React Testing Library and run in a simulated browser (jsdom). They always run in **mock mode**, so you don't need the API or MySQL running, and `.env.development.local` doesn't affect them. Test files sit next to the code they test (`*.test.js` / `*.test.jsx`). Shared setup is in `src/test/setup.js`, and the settings are in the `test` section of `vite.config.js`.
+
+### Running tests
+
+```powershell
+npm run test:run                              # everything, once
+npm test                                      # watch mode: re-runs affected tests when you save
+npx vitest run src/api/api.test.js            # one file
+npx vitest run src/auth                       # one folder
+npx vitest run -t "Remember me"               # only tests whose name contains this text
+```
+
+In watch mode, press `h` to see the shortcuts (for example `f` re-runs only failed tests and `q` quits).
+
+### What kind of tests these are
+
+| Kind | Files | What they check |
+| --- | --- | --- |
+| Unit | `utils/formatters`, `mocks/rules/rules`, `auth/tokenStorage`, `mocks/mockToken`, `api/httpClient`, `hooks/hooks`, `components/common/common`, `components/inventory/inventory` | One function, hook or component on its own, with made-up data or a fake network |
+| Integration | `api/api`, `auth/auth`, `pages/LoginPage/LoginPage`, `components/admin/ProductForm` | Several real pieces together: a page or `src/api/` function → `httpClient` → the mock API's rules |
+| App-level integration | `App` | The whole React app (routes, guards, nav bar, pages): log in, browse, log out |
+
+None of them are end-to-end (E2E) tests. Nothing here starts a real browser or calls the real API, so they **can't** catch CORS or HTTPS certificate problems, real API responses that differ from the mocks, or CSS, layout and animation issues. Before a demo, still click through the app with the real API running.
+
+### Writing tests
+
+- **Imports:** import `describe`, `it`, `expect` and `vi` from `vitest`. They aren't globals here.
+- **Finding elements:** prefer `screen.getByRole(...)` / `getByLabelText(...)` and `userEvent` (from `@testing-library/user-event`), so tests use the page the way a person would.
+- **Wait for API results:** calls through `src/api/` reach the mock API, which waits 250–600 ms. In component tests, use `await screen.findBy...(...)` (add `{ timeout: 2000 }` when a page makes several calls). In tests that call `src/api/` directly, use fake timers to skip the wait. See `call()` in `src/api/api.test.js`.
+- **Routing:** wrap anything that uses links or `useNavigate` in `<MemoryRouter initialEntries={['/some/path']}>`.
+- **Signing in:**
+  - For real sign-in state, wrap in `<AuthProvider>`.
+  - For a fixed user, use `<AuthContext.Provider value={...}>` (see `src/auth/auth.test.jsx`).
+  - To be signed in for API calls, save a token: `saveToken(createMockToken({ sub: '5', exp: <future seconds> }), false)` signs you in as `admin`.
+- **401 responses:** after a 401 (from any request except login), `httpClient` sends the browser to `/login`, which jsdom can't do. Tests that can hit a 401 start with `window.history.replaceState({}, '', '/login')`.
+- **Shared data between tests:** the mock database (`src/mocks/mockDb.js`) is shared by the tests in one file and reset between files. Make each test create what it needs, and don't depend on test order.
+- **Automatic cleanup:** `localStorage`, `sessionStorage` and anything rendered are cleared after every test.
+
+### Coverage
+
+Run `npm run coverage` to get a summary table in the terminal and a full report in the `coverage/` folder:
+
+```powershell
+npm run coverage
+Start-Process coverage\index.html   # open the report in your browser
+```
+
+In the report, click a folder, then a file. Lines highlighted red never ran during the tests, and yellow marks a branch (one side of an `if` or `? :`) that never ran. The `coverage/` folder is git-ignored.
 
 ## Demo accounts (mock mode only)
 
@@ -62,10 +121,10 @@ With `VITE_USE_MOCKS=true` (the default in `.env.development`):
 
 The weather moves through `Clear, DustStorm, Clear, Storm, Clear, RadiationEvent`, one step every 5 minutes, worked out from the clock so a reload doesn't restart it. For faster demos, set `VITE_MOCK_WEATHER_MINUTES=1`.
 
-**Rule:** pages and components never import from `src/mocks/`. Only `src/api/httpClient.js` does. Check it with:
+**Rule:** pages and components never import from `src/mocks/`. Only `src/api/httpClient.js` does (test files may, too). Check it with:
 
 ```powershell
-Get-ChildItem src -Recurse -Include *.js, *.jsx | Select-String "mocks/" | Where-Object { $_.Path -notmatch "\\src\\mocks\\" }
+Get-ChildItem src -Recurse -Include *.js, *.jsx -Exclude *.test.* | Select-String "mocks/" | Where-Object { $_.Path -notmatch "\\src\\mocks\\" }
 ```
 
 ## Environment variables
@@ -99,7 +158,7 @@ Get-ChildItem src -Recurse -Include *.js, *.jsx | Select-String "mocks/" | Where
 
 If the API isn't running you'll see a clear "Can't reach the outpost server" message instead of a crash.
 
-Once the real API is fully in use you can delete `src/mocks/`, remove the two mock lines from `src/api/httpClient.js`, and delete the `DevToolbar` component.
+Keep `src/mocks/` even once the real API is in use: the automated tests run against it. If you ever remove it, the tests that import from it (or call `src/api/`) need a replacement first.
 
 ---
 
@@ -136,6 +195,8 @@ src/
   hooks/           useProducts, usePurchases, useWeather, useCountdown, useDebounce
   styles/          tokens.css (every colour/size) and global.css
   utils/           small formatting helpers and iconFor (iconKey → icon)
+  test/            setup.js: runs before every test file
+  **/*.test.js(x)  tests, next to the code they test
 ```
 
 **Backgrounds:** `src/assets/backgrounds/overgrown-city.svg` is a drawn stand-in. To use a real photo, add it to that folder and point `--bg-image-city` in `src/styles/tokens.css` at it. To use plain CSS gradients instead, set `--app-background: var(--bg-gradient-fallback);`.
