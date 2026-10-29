@@ -1,0 +1,6 @@
+.history { max-width: 900px; margin: 0 auto; width: 100%; padding: var(--space-5); }
+.history .page-title { margin-bottom: var(--space-4); }
+
+@media (max-width: 560px) {
+  .history { padding: var(--space-4); }
+}

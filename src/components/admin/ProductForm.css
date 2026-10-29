@@ -1,0 +1,19 @@
+.product-form { display: grid; gap: var(--space-4); }
+.product-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+.product-form__icon-row { display: flex; gap: var(--space-3); align-items: center; }
+.product-form__icon-row select { flex: 1; }
+.product-form__icon-preview {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-glass-border);
+  color: var(--color-text);
+}
+.optional { color: var(--color-text-muted); font-weight: 400; }
+
+@media (max-width: 520px) {
+  .product-form__row { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,20 @@
+[
+  { "productId": 1, "name": "Clean Water", "categoryId": 1, "priceCredits": 12, "iconKey": "water", "description": "Filtered and boiled twice, sealed in a reusable two-litre bottle." },
+  { "productId": 2, "name": "Food Ration Pack", "categoryId": 1, "priceCredits": 16, "iconKey": "ration", "description": "A day of hearty meals from the community garden, packed to travel." },
+  { "productId": 3, "name": "Flashlight", "categoryId": 1, "priceCredits": 20, "iconKey": "flashlight", "description": "A sturdy hand-crank flashlight that never needs a power grid." },
+  { "productId": 4, "name": "Batteries", "categoryId": 1, "priceCredits": 8, "iconKey": "battery", "description": "Four rechargeable cells, topped up at the rooftop solar station." },
+  { "productId": 5, "name": "Blanket", "categoryId": 1, "priceCredits": 24, "iconKey": "blanket", "description": "A thick wool blanket, washed, patched and ready for cold nights." },
+  { "productId": 6, "name": "Cooking Kit", "categoryId": 1, "priceCredits": 32, "iconKey": "cooking", "description": "A nesting pot, pan and utensils for cooking over any campfire." },
+  { "productId": 7, "name": "Compass", "categoryId": 2, "priceCredits": 36, "iconKey": "compass", "description": "A brass compass that points the way home when the roads are gone." },
+  { "productId": 8, "name": "Binoculars", "categoryId": 2, "priceCredits": 60, "iconKey": "binoculars", "description": "Clear 10x lenses for spotting safe paths and blooming meadows ahead." },
+  { "productId": 9, "name": "Portable Water Filter", "categoryId": 2, "priceCredits": 44, "iconKey": "filter", "description": "Turns river water into drinking water, one squeeze at a time." },
+  { "productId": 10, "name": "Survival Backpack", "categoryId": 2, "priceCredits": 80, "iconKey": "backpack", "description": "A weatherproof pack with room for a week of supplies." },
+  { "productId": 11, "name": "First Aid Kit", "categoryId": 3, "priceCredits": 40, "iconKey": "first-aid", "description": "Everyday essentials for scrapes, sprains and small emergencies." },
+  { "productId": 12, "name": "Medical Supply Kit", "categoryId": 3, "priceCredits": 100, "iconKey": "medical-kit", "description": "Sterile dressings, splints and basic instruments." },
+  { "productId": 13, "name": "Bandages", "categoryId": 3, "priceCredits": 12, "iconKey": "bandage", "description": "A roll of clean cotton bandages, boiled and sealed." },
+  { "productId": 14, "name": "Antibiotics", "categoryId": 3, "priceCredits": 76, "iconKey": "pills", "description": "A carefully stored course of antibiotics for treating infections." },
+  { "productId": 15, "name": "Stun Baton", "categoryId": 4, "priceCredits": 88, "iconKey": "baton", "description": "A non-lethal deterrent for keeping the market gates calm." },
+  { "productId": 16, "name": "Riot Shield", "categoryId": 4, "priceCredits": 120, "iconKey": "shield", "description": "A clear, lightweight shield for protecting the people behind you." },
+  { "productId": 17, "name": "Protective Vest", "categoryId": 4, "priceCredits": 148, "iconKey": "vest", "description": "A padded vest that keeps patrol volunteers safe on night watch." },
+  { "productId": 18, "name": "Signal Flare Kit", "categoryId": 4, "priceCredits": 48, "iconKey": "flare", "description": "Bright flares for calling help or guiding travellers in after dark." }
+]
