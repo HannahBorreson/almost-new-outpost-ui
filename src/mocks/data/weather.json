@@ -1,0 +1,10 @@
+{
+  "sequence": ["Clear", "DustStorm", "Clear", "Storm", "Clear", "RadiationEvent"],
+  "refreshMinutes": 5,
+  "displayNames": {
+    "Clear": "Clear Conditions",
+    "Storm": "Storm",
+    "DustStorm": "Dust Storm",
+    "RadiationEvent": "Radiation Event"
+  }
+}

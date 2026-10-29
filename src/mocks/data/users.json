@@ -1,0 +1,10 @@
+{
+  "_note": "MOCK DATA ONLY. Passwords are stored in plain text here purely so the UI can be demoed without a backend. The real API stores PBKDF2 password hashes and never returns them.",
+  "users": [
+    { "id": 1, "username": "citizen", "password": "citizen123", "role": "Citizen" },
+    { "id": 2, "username": "scout", "password": "scout123", "role": "Scout" },
+    { "id": 3, "username": "medic", "password": "medic123", "role": "Medic" },
+    { "id": 4, "username": "security", "password": "security123", "role": "Security" },
+    { "id": 5, "username": "admin", "password": "admin123", "role": "MerchantAdmin" }
+  ]
+}

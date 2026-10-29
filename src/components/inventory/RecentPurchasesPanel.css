@@ -1,0 +1,14 @@
+.recent { display: grid; gap: var(--space-2); align-content: start; }
+.recent__heading {
+  margin: 0 0 var(--space-1);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.recent__list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.recent__name { font-weight: 500; }
+.recent__time, .recent__muted { color: var(--color-text-muted); }
+.recent__muted { margin: 0; }
+.recent__link { font-size: 0.875rem; margin-top: var(--space-1); }

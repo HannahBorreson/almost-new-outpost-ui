@@ -1,0 +1,79 @@
+.product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-3) var(--space-3);
+  background: rgba(16, 21, 17, 0.72);
+  border: 1.5px solid;
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s, background-color 0.15s;
+  min-width: 0;
+}
+.product-card:hover { transform: translateY(-2px); background: rgba(22, 29, 24, 0.8); }
+
+.product-card--ok {
+  border-color: rgba(111, 191, 115, 0.7);
+  box-shadow: 0 0 14px rgba(111, 191, 115, 0.16), inset 0 0 16px rgba(111, 191, 115, 0.05);
+}
+.product-card--denied {
+  border-color: rgba(224, 100, 90, 0.75);
+  box-shadow: 0 0 14px rgba(224, 100, 90, 0.18), inset 0 0 16px rgba(224, 100, 90, 0.05);
+}
+
+.product-card__name {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.25;
+  min-height: 2.5em;
+  display: flex;
+  align-items: center;
+}
+.product-card__icon { color: #e3e9df; margin: var(--space-1) 0; }
+.product-card__category {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.product-card__price { margin: 0; display: flex; gap: var(--space-2); align-items: baseline; flex-wrap: wrap; justify-content: center; }
+.product-card__current { font-weight: 600; }
+.product-card__base { color: var(--color-text-muted); font-size: 0.875rem; }
+
+.product-card__status {
+  width: 100%;
+  margin-top: auto;
+  min-height: 36px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+.product-card__status--ok { background: var(--color-ok-bg); border-color: var(--color-ok); color: var(--color-ok-text); }
+.product-card__status--ok:hover { background: rgba(111, 191, 115, 0.26); }
+.product-card__status--denied { background: var(--color-danger-bg); border-color: var(--color-danger); color: var(--color-danger-text); }
+.product-card__status--denied:hover { background: rgba(224, 100, 90, 0.26); }
+
+/* Loading placeholder with the same shape as a card */
+.product-card--skeleton { cursor: default; border-color: var(--color-glass-border); }
+.product-card--skeleton:hover { transform: none; }
+.skeleton-bar {
+  border-radius: var(--radius-sm);
+  background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.14), rgba(255,255,255,0.06));
+  background-size: 200% 100%;
+  animation: shimmer 1.3s ease-in-out infinite;
+}
+@keyframes shimmer { to { background-position: -200% 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .product-card, .product-card:hover { transition: none; transform: none; }
+  .skeleton-bar { animation: none; }
+}
